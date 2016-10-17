@@ -124,7 +124,10 @@ import java.io.*;
 public class HashMap<K,V>
     extends AbstractMap<K,V>
     implements Map<K,V>, Cloneable, Serializable
-{
+{   //Notes:
+    //1.扩容时会new出1个2倍大的table，重新计算hash，并把元素散列到新table上，因此，扩容的代价很大。
+    //2.hash值不够分散时，hash冲突会比较严重，map性能下降，从O(1)变成O(N)
+    //3.多个线程同时读写HashMap可能会造成死循环
 
     /**
      * The default initial capacity - MUST be a power of two.
